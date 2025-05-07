@@ -1,12 +1,10 @@
 import { h, Component } from 'preact';
+import { ToggleProps } from '../../../../components/custom-types';
 import * as style from './style.css';
 import 'add-css:./style.css';
 
-interface Props extends preact.JSX.HTMLAttributes {}
-interface State {}
-
-export default class Toggle extends Component<Props, State> {
-  render(props: Props) {
+export default class Toggle extends Component<ToggleProps> {
+  render(props: ToggleProps) {
     return (
       <div class={style.checkbox}>
         {/* @ts-ignore - TS bug https://github.com/microsoft/TypeScript/issues/16019 */}

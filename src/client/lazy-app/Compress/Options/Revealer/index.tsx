@@ -1,20 +1,20 @@
 import { h, Component } from 'preact';
-import * as style from './style.css';
-import 'add-css:./style.css';
+import { RevealerProps } from '../../../../components/custom-types';
 import { Arrow } from '../../../icons';
+import './style.css';
 
-interface Props extends preact.JSX.HTMLAttributes {}
-interface State {}
-
-export default class Revealer extends Component<Props, State> {
-  render(props: Props) {
+export class Revealer extends Component<RevealerProps> {
+  render() {
+    const { children, checked, onChange, class: className } = this.props;
     return (
-      <div class={style.checkbox}>
-        {/* @ts-ignore - TS bug https://github.com/microsoft/TypeScript/issues/16019 */}
-        <input class={style.realCheckbox} type="checkbox" {...props} />
-        <div class={style.arrow}>
-          <Arrow />
+      <div class={`revealer ${className || ''}`}>
+        <div class="revealer__header">
+          <input type="checkbox" checked={checked} onChange={onChange} />
+          <div class="revealer__arrow">
+            <Arrow />
+          </div>
         </div>
+        {checked && <div class="revealer__content">{children}</div>}
       </div>
     );
   }

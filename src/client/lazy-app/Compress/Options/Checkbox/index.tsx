@@ -2,12 +2,10 @@ import { h, Component } from 'preact';
 import * as style from './style.css';
 import 'add-css:./style.css';
 import { UncheckedIcon, CheckedIcon } from '../../../icons';
+import { CheckboxProps } from '../../../../components/custom-types';
 
-interface Props extends preact.JSX.HTMLAttributes {}
-interface State {}
-
-export default class Checkbox extends Component<Props, State> {
-  render(props: Props) {
+export default class Checkbox extends Component<CheckboxProps> {
+  render(props: CheckboxProps) {
     return (
       <div class={style.checkbox}>
         {props.checked ? (
@@ -19,8 +17,14 @@ export default class Checkbox extends Component<Props, State> {
         ) : (
           <UncheckedIcon class={style.icon} />
         )}
-        {/* @ts-ignore - TS bug https://github.com/microsoft/TypeScript/issues/16019 */}
-        <input class={style.realCheckbox} type="checkbox" {...props} />
+        <input
+          class={style.realCheckbox}
+          type="checkbox"
+          checked={props.checked}
+          disabled={props.disabled}
+          name={props.name}
+          onChange={props.onChange}
+        />
       </div>
     );
   }

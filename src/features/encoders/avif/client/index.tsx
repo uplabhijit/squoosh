@@ -4,11 +4,13 @@ import { h, Component } from 'preact';
 import { preventDefault, shallowEqual } from 'client/lazy-app/util';
 import * as style from 'client/lazy-app/Compress/Options/style.css';
 import Checkbox from 'client/lazy-app/Compress/Options/Checkbox';
+import { CheckboxProps } from 'client/components/custom-types';
 import Expander from 'client/lazy-app/Compress/Options/Expander';
 import Select from 'client/lazy-app/Compress/Options/Select';
 import Range from 'client/lazy-app/Compress/Options/Range';
 import linkState from 'linkstate';
-import Revealer from 'client/lazy-app/Compress/Options/Revealer';
+import { Revealer } from 'client/lazy-app/Compress/Options/Revealer';
+import { RevealerProps } from 'client/components/custom-types';
 
 export const encode = (
   signal: AbortSignal,
@@ -199,9 +201,10 @@ export class Options extends Component<Props, State> {
         <label class={style.optionReveal}>
           <Revealer
             checked={showAdvanced}
-            onChange={linkState(this, 'showAdvanced')}
-          />
-          Advanced settings
+            onChange={this._inputChange('showAdvanced', 'boolean')}
+          >
+            Advanced settings
+          </Revealer>
         </label>
         <Expander>
           {showAdvanced && (
@@ -247,7 +250,7 @@ export class Options extends Component<Props, State> {
                         <div class={style.optionOneCell}>
                           <Range
                             min="0"
-                            max={MAX_QUALITY - 1} // MAX_QUALITY would mean lossless
+                            max={MAX_QUALITY - 1}
                             value={alphaQuality}
                             onInput={this._inputChange(
                               'alphaQuality',

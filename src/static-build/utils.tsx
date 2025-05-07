@@ -14,9 +14,9 @@ import { promises as fsp } from 'fs';
 import { join as joinPath } from 'path';
 
 import render from 'preact-render-to-string';
-import { VNode } from 'preact';
+import { VNode, JSX } from 'preact';
 
-export function renderPage(vnode: VNode) {
+export function renderPage(vnode: JSX.Element): string {
   return '<!DOCTYPE html>' + render(vnode);
 }
 

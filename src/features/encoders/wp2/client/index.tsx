@@ -9,7 +9,7 @@ import Select from 'client/lazy-app/Compress/Options/Select';
 import Checkbox from 'client/lazy-app/Compress/Options/Checkbox';
 import Expander from 'client/lazy-app/Compress/Options/Expander';
 import linkState from 'linkstate';
-import Revealer from 'client/lazy-app/Compress/Options/Revealer';
+import { Revealer } from 'client/lazy-app/Compress/Options/Revealer';
 
 export const encode = (
   signal: AbortSignal,
@@ -260,23 +260,20 @@ export class Options extends Component<Props, State> {
                       Subsample chroma:
                       <Select
                         value={uvMode}
-                        onInput={this._inputChange('uvMode', 'number')}
+                        onChange={this._inputChange('uvMode', 'number')}
                       >
-                        <option value={UVMode.UVModeAuto}>Auto</option>
-                        <option value={UVMode.UVModeAdapt}>Vary</option>
-                        <option value={UVMode.UVMode420}>Half</option>
-                        <option value={UVMode.UVMode444}>Off</option>
+                        <option value="0">YUV 420</option>
+                        <option value="1">YUV 444</option>
                       </Select>
                     </label>
                     <label class={style.optionTextFirst}>
                       Color space:
                       <Select
                         value={colorSpace}
-                        onInput={this._inputChange('colorSpace', 'number')}
+                        onChange={this._inputChange('colorSpace', 'number')}
                       >
-                        <option value={Csp.kYCoCg}>YCoCg</option>
-                        <option value={Csp.kYCbCr}>YCbCr</option>
-                        <option value={Csp.kYIQ}>YIQ</option>
+                        <option value="0">YCbCr</option>
+                        <option value="1">RGB</option>
                       </Select>
                     </label>
                     <label class={style.optionToggle}>

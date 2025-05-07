@@ -12,7 +12,7 @@ import Range from 'client/lazy-app/Compress/Options/Range';
 import Checkbox from 'client/lazy-app/Compress/Options/Checkbox';
 import Expander from 'client/lazy-app/Compress/Options/Expander';
 import Select from 'client/lazy-app/Compress/Options/Select';
-import Revealer from 'client/lazy-app/Compress/Options/Revealer';
+import { Revealer } from 'client/lazy-app/Compress/Options/Revealer';
 
 export function encode(
   signal: AbortSignal,

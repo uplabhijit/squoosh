@@ -1,4 +1,6 @@
 import { h, Component } from 'preact';
+import Checkbox from '../Options/Checkbox';
+import { CheckboxProps } from '../../../components/custom-types';
 
 import * as style from './style.css';
 import 'add-css:./style.css';

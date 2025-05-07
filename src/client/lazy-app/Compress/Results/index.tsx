@@ -1,4 +1,4 @@
-import { h, Component, Fragment } from 'preact';
+import { h, Component } from 'preact';
 
 import * as style from './style.css';
 import 'add-css:./style.css';
@@ -45,7 +45,7 @@ export default class Results extends Component<Props, State> {
   }
 
   private onDownload = () => {
-    // GA can’t do floats. So we round to ints. We're deliberately rounding to nearest kilobyte to
+    // GA can't do floats. So we round to ints. We're deliberately rounding to nearest kilobyte to
     // avoid cases where exact image sizes leak something interesting about the user.
     const before = Math.round(this.props.source!.file.size / 1024);
     const after = Math.round(this.props.imageFile!.size / 1024);
@@ -89,11 +89,11 @@ export default class Results extends Component<Props, State> {
             <div class={style.sizeInfo}>
               <div class={style.fileSize}>
                 {prettySize ? (
-                  <Fragment>
+                  <span>
                     {prettySize.value}{' '}
                     <span class={style.unit}>{prettySize.unit}</span>
                     <span class={style.typeLabel}> {typeLabel}</span>
-                  </Fragment>
+                  </span>
                 ) : (
                   '…'
                 )}

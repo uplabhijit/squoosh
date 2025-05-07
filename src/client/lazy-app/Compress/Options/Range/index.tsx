@@ -1,16 +1,19 @@
 import { h, Component } from 'preact';
 import * as style from './style.css';
 import 'add-css:./style.css';
-import RangeInputElement from './custom-els/RangeInput';
-import './custom-els/RangeInput';
+import RangeInputElement from './custom-els/RangeInput/index';
+import './custom-els/RangeInput/index';
 import { linkRef } from 'shared/prerendered-app/util';
+import {
+  RangeProps,
+  CustomElementProps,
+} from '../../../../components/custom-types';
 
-interface Props extends preact.JSX.HTMLAttributes {}
 interface State {
   textFocused: boolean;
 }
 
-export default class Range extends Component<Props, State> {
+export default class Range extends Component<RangeProps, State> {
   rangeWc?: RangeInputElement;
   inputEl?: HTMLInputElement;
 
@@ -34,10 +37,8 @@ export default class Range extends Component<Props, State> {
     this.setState({ textFocused: false });
   };
 
-  render(props: Props, state: State) {
-    const { children, ...otherProps } = props;
-
-    const { value, min, max, step } = props;
+  render(props: RangeProps, state: State) {
+    const { children, value, min, max, step, onInput, ...otherProps } = props;
     const textValue = state.textFocused ? this.inputEl!.value : value;
 
     return (
@@ -49,7 +50,12 @@ export default class Range extends Component<Props, State> {
           <range-input
             ref={linkRef(this, 'rangeWc')}
             class={style.rangeWc}
-            {...otherProps}
+            value={value}
+            min={min}
+            max={max}
+            step={step}
+            onInput={onInput}
+            {...(otherProps as CustomElementProps['range-input'])}
           />
         </div>
         <input

@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { h } from 'preact';
+import { h, JSX } from 'preact';
 
 import { renderPage, writeFiles } from './utils';
 import IndexPage from './pages/index';
@@ -53,7 +53,7 @@ interface Output {
 }
 
 const toOutput: Output = {
-  'index.html': renderPage(<IndexPage />),
+  'index.html': renderPage((<IndexPage />) as JSX.Element),
   'manifest.json': JSON.stringify({
     name: 'Squoosh',
     short_name: 'Squoosh',
